@@ -70,6 +70,7 @@ Note also that a lot of `SendToTF` and `ReceiveFromTF` ops can be avoided by bei
 1. How should we handle send/receive ops? More specifically, we may want to pass around tensor handles and/or tensor content and I believe the answer to this question should be aware of this distinction.
 2. How do we package TF graph functions and host functions such that certain optimizations can still be performed on the user code (as in user of a Swift for TF library)?
 3. What kind of optimizations do we want to allow/consider?
+4. Where do TensorFlow variables fit in and do we need them? The use of the  static single assignment (SSA) form allows us to avoid the need for TF variables. Note that sparse variable updates can also be represented simply as method calls to something `Tensor.scatterAdd`, for example, which would return a new, updated, tensor. Are there use cases that render TF variables necessary?
 
 ## Conclusion
 
